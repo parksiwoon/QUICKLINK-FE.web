@@ -1,3 +1,4 @@
+//회원가입 페이지
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Label from "../components/Label";
