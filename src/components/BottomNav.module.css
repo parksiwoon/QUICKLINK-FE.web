@@ -1,0 +1,22 @@
+/* BottomNav.module.css */
+.navContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navItem {
+  text-align: center;
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navItem:hover {
+  color: #007bff; /* 선택시 강조 */
+}
