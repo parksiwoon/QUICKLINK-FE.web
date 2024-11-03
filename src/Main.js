@@ -1,3 +1,4 @@
+//페이지 라우터 설정
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./components/App";
 import {
