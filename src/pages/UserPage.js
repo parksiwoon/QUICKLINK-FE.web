@@ -1,34 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from '../lib/axios';
-import Avatar from '../components/Avatar';
-import Card from '../components/Card';
-import HorizontalRule from '../components/HorizontalRule';
-import styles from './UserPage.module.css';
-import LinkCard from '../components/LinkCard';
+import { useEffect, useState } from "react";
+import Avatar from "../components/Avatar";
+import Card from "../components/Card";
+import HorizontalRule from "../components/HorizontalRule";
+import styles from "./UserPage.module.css";
+import LinkCard from "../components/LinkCard";
 
 function UserPage() {
   const [user, setUser] = useState(null);
   const [links, setLinks] = useState([]);
-  const params = useParams();
-  const userId = params.userId;
-
-  async function getUser(id) {
-    const res = await axios.get(`/users/${id}`);
-    const nextUser = res.data;
-    setUser(nextUser);
-  }
-
-  async function getUserLinks(id) {
-    const res = await axios.get(`/users/${id}/links`);
-    const nextLinks = res.data;
-    setLinks(nextLinks);
-  }
-
-  useEffect(() => {
-    getUser(userId);
-    getUserLinks(userId);
-  }, [userId]);
 
   if (!user) return null;
 
@@ -48,7 +27,11 @@ function UserPage() {
       <ul className={styles.LinkList}>
         {links.map((link) => (
           <li className={styles.LinkItem} key={link.id}>
-            <LinkCard title={link.title} thumbUrl={link.thumbUrl} url={link.url} />
+            <LinkCard
+              title={link.title}
+              thumbUrl={link.thumbUrl}
+              url={link.url}
+            />
           </li>
         ))}
       </ul>
