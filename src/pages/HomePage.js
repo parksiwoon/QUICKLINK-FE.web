@@ -3,11 +3,9 @@ import Button from "../components/Button";
 import Link from "../components/Link";
 import HeroPlaceholderImage from "../assets/hero-placeholder.png";
 import styles from "./HomePage.module.css";
-import { useAuth } from "../contexts/AuthProvider";
 import { useEffect } from "react";
 
 function HomePage() {
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
