@@ -1,4 +1,3 @@
-//페이지 라우터 설정
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./components/App";
 import {
@@ -15,6 +14,8 @@ import UserPage from "./pages/UserPage";
 import SettingPage from "./pages/SettingPage";
 import CreateLinkPage from "./pages/CreateLinkPage";
 import EditLinkPage from "./pages/EditLinkPage";
+import Nav from "./components/Nav"; // Nav 컴포넌트 추가
+import BottomNav from "./components/BottomNav"; // BottomNav 컴포넌트 추가
 
 function Main() {
   return (
@@ -38,6 +39,7 @@ function Main() {
             <Route path=":userId" element={<UserPage />} />
           </Route>
         </Routes>
+        <BottomNav /> {/* 하단 BottomNav 컴포넌트 추가 */}
       </App>
     </BrowserRouter>
   );

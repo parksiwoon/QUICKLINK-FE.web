@@ -3,6 +3,7 @@ import Button from "./Button";
 import Link from "./Link";
 import Avatar from "./Avatar";
 import logoImage from "../assets/logo.svg";
+import { useAuth } from "../contexts/AuthProvider";
 import SearchBar from "./SearchBar"; // 상단 검색바 추가
 import BottomNav from "./BottomNav"; // 하단 네비게이션 추가
 
@@ -19,6 +20,8 @@ export function PublicNav() {
 }
 
 function Nav() {
+  const { user, logout } = useAuth();
+
   return (
     <>
       <header className={styles.Container}>
