@@ -5,7 +5,6 @@ import Avatar from "./Avatar";
 import logoImage from "../assets/logo.svg";
 import { useAuth } from "../contexts/AuthProvider";
 import SearchBar from "./SearchBar"; // 상단 검색바 추가
-import BottomNav from "./BottomNav"; // 하단 네비게이션 추가
 
 export function PublicNav() {
   return (
@@ -53,7 +52,6 @@ function Nav() {
           </div>
         </nav>
       </header>
-      <BottomNav /> {/* 하단에 네비게이션 바 추가 */}
     </>
   );
 }

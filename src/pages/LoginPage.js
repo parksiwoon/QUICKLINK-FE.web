@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Label from '../components/Label';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import HorizontalRule from '../components/HorizontalRule';
-import Link from '../components/Link';
-import GoogleImage from '../assets/google.svg';
-import styles from './LoginPage.module.css';
-import { useAuth } from '../contexts/AuthProvider';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Label from "../components/Label";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import HorizontalRule from "../components/HorizontalRule";
+import Link from "../components/Link";
+import KakaoImage from "../assets/kakao.svg";
+import styles from "./LoginPage.module.css";
+import { useAuth } from "../contexts/AuthProvider";
 
 function LoginPage() {
   const [values, setValues] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const navigate = useNavigate();
   const { user, login } = useAuth();
@@ -30,12 +30,12 @@ function LoginPage() {
     e.preventDefault();
     const { email, password } = values;
     await login({ email, password });
-    navigate('/me');
+    navigate("/me");
   }
 
   useEffect(() => {
     if (user) {
-      navigate('/me');
+      navigate("/me");
     }
   }, [user, navigate]);
 
@@ -70,14 +70,14 @@ function LoginPage() {
         <Button className={styles.Button}>로그인</Button>
         <HorizontalRule className={styles.HorizontalRule}>또는</HorizontalRule>
         <Button
-          className={styles.GoogleButton}
+          className={styles.KakaoButton}
           type="button"
           appearance="outline"
           as={Link}
-          /** @TODO 구글 로그인 구현 */
+          /** @TODO 카카오 로그인 구현 */
         >
-          <img src={GoogleImage} alt="Google" />
-          구글로 시작하기
+          <img src={KakaoImage} alt="Kakao" />
+          카카오로 시작하기
         </Button>
         <div>
           회원이 아니신가요? <Link to="/register">회원가입하기</Link>
