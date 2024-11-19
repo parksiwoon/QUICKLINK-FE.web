@@ -34,11 +34,13 @@ function SettingPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("avatar", values.avatar);
     formData.append("name", values.name);
     formData.append("email", values.email);
     formData.append("bio", values.bio);
+
     await updateMe(formData);
     navigate("/me/info");
   }
