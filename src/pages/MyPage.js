@@ -19,15 +19,26 @@ function MyPage({ searchTerm }) {
     setLinks(res.data);
   }
 
-  // 링크 편집
-  function handleEditClick(linkId) {
-    navigate(`/me/links/${linkId}/edit`);
+  // 링크 편집 후 반영
+  async function updateLink(linkId, updatedData) {
+    try {
+      await axios.put(`/users/me/links/${linkId}`, updatedData);
+      getMyLinks(); // 링크 업데이트 후 목록 재동기화
+    } catch (error) {
+      console.error("링크 수정 중 오류 발생", error);
+    }
   }
 
   // 링크 삭제
   function handleDeleteClick(linkId) {
-    axios.delete(`/users/me/links/${linkId}`);
-    setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
+    axios
+      .delete(`/users/me/links/${linkId}`)
+      .then(() => {
+        setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
+      })
+      .catch((error) => {
+        console.error("링크 삭제 중 오류 발생", error);
+      });
   }
 
   useEffect(() => {

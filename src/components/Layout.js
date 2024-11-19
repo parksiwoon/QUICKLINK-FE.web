@@ -6,7 +6,6 @@ import leftArrowImage from "../assets/left-arrow.svg";
 export function LandingLayout() {
   return (
     <div className={styles.Layout}>
-      <Nav />
       <main className={`${styles.Main} ${styles.landing}`}>
         <Outlet />
       </main>
