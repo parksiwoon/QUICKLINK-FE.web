@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./AlarmPopup.module.css"; // 스타일 파일 작성
+import styles from "./Popup.module.css"; // 팝업 공통 스타일
+import AlarmPopupCard from "./AlarmPopupCard"; // 카드 컴포넌트 임포트
 
 function AlarmPopup({ notifications, onClose }) {
   return (
@@ -10,16 +11,12 @@ function AlarmPopup({ notifications, onClose }) {
         </button>
         <div className={styles.notificationList}>
           {notifications.map((notification, index) => (
-            <div className="card" key={index}>
-              <div className="img"></div>
-              <div className="textBox">
-                <div className="textContent">
-                  <p className="h1">{notification.title}</p>
-                  <span className="span">{notification.date}</span>
-                </div>
-                <p className="p">{notification.url}</p>
-              </div>
-            </div>
+            <AlarmPopupCard
+              key={index}
+              title={notification.title}
+              url={notification.url}
+              date={notification.date}
+            />
           ))}
         </div>
       </div>

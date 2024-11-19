@@ -13,6 +13,13 @@ function BottomNav() {
   const [isChatPopupOpen, setIsChatPopupOpen] = useState(false);
   const [isAlarmPopupOpen, setIsAlarmPopupOpen] = useState(false);
 
+  // 테스트용 더미 데이터
+  const notifications = [
+    { title: "Link 1", url: "https://example.com/1", date: "5 min ago" },
+    { title: "Link 2", url: "https://example.com/2", date: "10 min ago" },
+    { title: "Link 3", url: "https://example.com/3", date: "15 min ago" },
+  ];
+
   const openChatPopup = () => {
     setIsChatPopupOpen(true);
     setActiveTab("/chat"); // Chat 탭 활성화
@@ -125,7 +132,9 @@ function BottomNav() {
       {isChatPopupOpen && <ChatPopup onClose={closeChatPopup} />}
 
       {/* Alarm 팝업 렌더링 */}
-      {isAlarmPopupOpen && <AlarmPopup onClose={closeAlarmPopup} />}
+      {isAlarmPopupOpen && (
+        <AlarmPopup notifications={notifications} onClose={closeAlarmPopup} />
+      )}
     </>
   );
 }
