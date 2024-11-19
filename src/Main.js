@@ -17,6 +17,7 @@ import CreateLinkPage from "./pages/CreateLinkPage";
 import EditLinkPage from "./pages/EditLinkPage";
 import Nav from "./components/Nav"; // Nav 컴포넌트 추가
 import BottomNav from "./components/BottomNav"; // BottomNav 컴포넌트 추가
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function Main() {
   return (

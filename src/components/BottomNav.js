@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./BottomNav.module.css";
+import { useAuth } from "../contexts/AuthProvider";
 
 function BottomNav() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("/me");
 
   // 라우팅 상태에 따라 탭 활성화
@@ -23,6 +26,15 @@ function BottomNav() {
       setActiveTab("/me"); // 기본 경로
     }
   }, [location.pathname]);
+
+  // 인증 상태 체크 후 리다이렉트
+  function handleNavigation(targetPath) {
+    if (!user && (targetPath === "/me" || targetPath.startsWith("/me/info"))) {
+      navigate("/login");
+    } else {
+      navigate(targetPath);
+    }
+  }
 
   return (
     <div className={styles.container}>
