@@ -17,7 +17,6 @@ export function LandingLayout() {
 export function MyPageLayout() {
   return (
     <div className={`${styles.Layout} ${styles.dark}`}>
-      <Nav />
       <main className={styles.Main}>
         <div className={styles.Container}>
           <Outlet />

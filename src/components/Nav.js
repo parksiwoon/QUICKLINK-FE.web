@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Nav.module.css";
 import Button from "./Button";
 import Link from "./Link";
@@ -18,7 +19,7 @@ export function PublicNav() {
   );
 }
 
-function Nav() {
+function Nav({ onSearch }) {
   const { user, logout } = useAuth();
 
   return (
@@ -28,7 +29,7 @@ function Nav() {
           <Link to="/">
             <img className={styles.Logo} src={logoImage} alt="logo" />
           </Link>
-          <SearchBar /> {/* 상단에 검색바 추가 */}
+          <SearchBar onSearch={onSearch} /> {/* 검색어 전달 */}
           <div className={styles.Menu}>
             {user ? (
               <>

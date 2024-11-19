@@ -1,4 +1,4 @@
-/* From Uiverse.io by satyamchaudharydev */
+/* SearchBar.module.css */
 .form {
   --width-of-input: 100%; /* 입력창이 화면 전체를 기준으로 중앙에 정렬되도록 설정 */
   --border-height: 1px;
@@ -10,6 +10,7 @@
   transform: translateX(-50%); /* 중앙 정렬 */
   width: 90%; /* 화면 폭의 90% 차지 */
   max-width: 440px; /* 최대 너비 설정 */
+  min-width: 150px; /* 최소 너비 설정 */
 }
 /* styling of Input */
 .input {

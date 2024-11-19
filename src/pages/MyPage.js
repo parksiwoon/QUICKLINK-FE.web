@@ -8,7 +8,7 @@ import PlusSquareImage from "../assets/plus-square.svg";
 import LinkCard from "../components/LinkCard";
 import { useAuth } from "../contexts/AuthProvider";
 
-function MyPage() {
+function MyPage({ searchTerm }) {
   const { user } = useAuth(true);
   const [links, setLinks] = useState([]);
   const navigate = useNavigate();
@@ -16,8 +16,7 @@ function MyPage() {
   // 링크 데이터를 가져오는 함수
   async function getMyLinks() {
     const res = await axios.get("/users/me/links");
-    const nextLinks = res.data;
-    setLinks(nextLinks);
+    setLinks(res.data);
   }
 
   // 링크 편집
@@ -35,24 +34,31 @@ function MyPage() {
     getMyLinks();
   }, []);
 
-  if (!user) {
-    // 로그인하지 않은 사용자라면 로그인 페이지로 리다이렉트
-    return <Navigate to="/login" replace />;
-  }
+  const filteredLinks = links.filter(
+    (link) =>
+      link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      link.url.toLowerCase().includes(searchTerm.toLowerCase()) // URL도 필터링 조건에 추가
+  );
 
   return (
     <>
       <h1 className={styles.Heading}>나의 링크</h1>
       <HorizontalRule className={styles.HorizontalRule} />
       <ul className={styles.LinkList}>
-        {links.map((link) => (
+        {filteredLinks.map((link) => (
           <li className={styles.LinkItem} key={link.id}>
             <LinkCard
               title={link.title}
               url={link.url}
               thumbUrl={link.thumbUrl}
-              onClick={() => handleEditClick(link.id)}
-              onDelete={() => handleDeleteClick(link.id)}
+              onClick={() => navigate(`/me/links/${link.id}/edit`)}
+              onDelete={() => {
+                axios.delete(`/users/me/links/${link.id}`);
+                setLinks((prevLinks) =>
+                  prevLinks.filter((prevLink) => prevLink.id !== link.id)
+                );
+              }}
+              searchTerm={searchTerm} // 검색어 전달
             />
           </li>
         ))}
