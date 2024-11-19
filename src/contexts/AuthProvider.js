@@ -16,6 +16,8 @@ export function AuthProvider({ children }) {
     isPending: true,
   });
 
+  const navigate = useNavigate();
+
   async function getMe() {
     setValues((prevValues) => ({
       ...prevValues,
@@ -50,6 +52,7 @@ export function AuthProvider({ children }) {
         user: null,
         isPending: false,
       });
+      navigate("/"); // 루트 경로로 리다이렉트
     }
   }
 
@@ -91,7 +94,7 @@ export function useAuth(required) {
 
   useEffect(() => {
     if (required && !context.user && !context.isPending) {
-      navigate("/login");
+      navigate("/");
     }
   }, [context.user, context.isPending, navigate, required]);
 

@@ -1,7 +1,7 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import Nav, { PublicNav } from './Nav';
-import styles from './Layout.module.css';
-import leftArrowImage from '../assets/left-arrow.svg';
+import { Outlet, useNavigate } from "react-router-dom";
+import Nav, { PublicNav } from "./Nav";
+import styles from "./Layout.module.css";
+import leftArrowImage from "../assets/left-arrow.svg";
 
 export function LandingLayout() {
   return (

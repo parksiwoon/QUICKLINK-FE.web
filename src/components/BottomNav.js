@@ -8,8 +8,9 @@ function BottomNav() {
 
   // 라우팅 상태에 따라 탭 활성화
   useEffect(() => {
-    // 경로 조건 추가
-    if (
+    if (location.pathname === "/") {
+      setActiveTab(""); // 루트 경로에서는 아무 탭도 활성화하지 않음
+    } else if (
       location.pathname === "/me/info" ||
       location.pathname === "/me/info/edit"
     ) {
@@ -79,7 +80,8 @@ function BottomNav() {
           </Link>
         </label>
 
-        <span className={styles.glider}></span>
+        {/* 루트 경로에서는 glider가 보이지 않도록 조건 추가 */}
+        {activeTab && <span className={styles.glider}></span>}
       </div>
     </div>
   );
