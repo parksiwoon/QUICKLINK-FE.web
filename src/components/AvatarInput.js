@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import styles from './AvatarInput.module.css';
-import Avatar from './Avatar';
-import Button from './Button';
-import UploadImage from '../assets/upload.svg';
+import { useEffect, useRef, useState } from "react";
+import styles from "./AvatarInput.module.css";
+import Avatar from "./Avatar";
+import Button from "./Button";
+import UploadImage from "../assets/upload.svg";
 
 function AvatarInput({ className, initialAvatar, name, onChange }) {
   const [file, setFile] = useState(null);
@@ -21,7 +21,7 @@ function AvatarInput({ className, initialAvatar, name, onChange }) {
 
   useEffect(() => {
     if (!file) {
-      setAvatar('');
+      setAvatar("");
       return;
     }
 
