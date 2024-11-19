@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from '../lib/axios';
-import Avatar from '../components/Avatar';
-import Card from '../components/Card';
-import HorizontalRule from '../components/HorizontalRule';
-import styles from './UserPage.module.css';
-import LinkCard from '../components/LinkCard';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "../lib/axios";
+import Avatar from "../components/Avatar";
+import Card from "../components/Card";
+import HorizontalRule from "../components/HorizontalRule";
+import styles from "./UserPage.module.css";
+import LinkCard from "../components/LinkCard";
 
 function UserPage() {
   const [user, setUser] = useState(null);
@@ -14,9 +14,16 @@ function UserPage() {
   const userId = params.userId;
 
   async function getUser(id) {
-    const res = await axios.get(`/users/${id}`);
-    const nextUser = res.data;
-    setUser(nextUser);
+    try {
+      const res = await axios.get(`/users/${id}`);
+      const nextUser = res.data;
+      setUser(nextUser);
+    } catch (error) {
+      console.error(
+        "사용자 정보 가져오기 실패:",
+        error.response?.data || error.message
+      );
+    }
   }
 
   async function getUserLinks(id) {
@@ -48,7 +55,11 @@ function UserPage() {
       <ul className={styles.LinkList}>
         {links.map((link) => (
           <li className={styles.LinkItem} key={link.id}>
-            <LinkCard title={link.title} thumbUrl={link.thumbUrl} url={link.url} />
+            <LinkCard
+              title={link.title}
+              thumbUrl={link.thumbUrl}
+              url={link.url}
+            />
           </li>
         ))}
       </ul>

@@ -1,12 +1,11 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import Nav, { PublicNav } from './Nav';
-import styles from './Layout.module.css';
-import leftArrowImage from '../assets/left-arrow.svg';
+import { Outlet, useNavigate } from "react-router-dom";
+import Nav, { PublicNav } from "./Nav";
+import styles from "./Layout.module.css";
+import leftArrowImage from "../assets/left-arrow.svg";
 
 export function LandingLayout() {
   return (
     <div className={styles.Layout}>
-      <Nav />
       <main className={`${styles.Main} ${styles.landing}`}>
         <Outlet />
       </main>
@@ -17,7 +16,6 @@ export function LandingLayout() {
 export function MyPageLayout() {
   return (
     <div className={`${styles.Layout} ${styles.dark}`}>
-      <Nav />
       <main className={styles.Main}>
         <div className={styles.Container}>
           <Outlet />

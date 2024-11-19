@@ -7,7 +7,7 @@
 .Label,
 .Input,
 .Button,
-.GoogleButton {
+.KakaoButton {
   display: block;
   width: 100%;
 }
@@ -30,7 +30,7 @@
   margin: 32px 0;
 }
 
-.GoogleButton {
+.KakaoButton {
   display: flex;
   font-size: 18px;
   justify-content: center;
