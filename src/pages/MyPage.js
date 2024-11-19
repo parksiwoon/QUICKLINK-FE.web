@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from '../lib/axios';
-import Avatar from '../components/Avatar';
-import Button from '../components/Button';
-import Card from '../components/Card';
-import Link from '../components/Link';
-import HorizontalRule from '../components/HorizontalRule';
-import styles from './MyPage.module.css';
-import PlusSquareImage from '../assets/plus-square.svg';
-import LinkCard from '../components/LinkCard';
-import { useAuth } from '../contexts/AuthProvider';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../lib/axios";
+import Avatar from "../components/Avatar";
+import Button from "../components/Button";
+import Card from "../components/Card";
+import Link from "../components/Link";
+import HorizontalRule from "../components/HorizontalRule";
+import styles from "./MyPage.module.css";
+import PlusSquareImage from "../assets/plus-square.svg";
+import LinkCard from "../components/LinkCard";
+import { useAuth } from "../contexts/AuthProvider";
 
 function MyPage() {
   const { user } = useAuth(true);
@@ -17,7 +17,7 @@ function MyPage() {
   const navigate = useNavigate();
 
   async function getMyLinks() {
-    const res = await axios.get('/users/me/links');
+    const res = await axios.get("/users/me/links");
     const nextLinks = res.data;
     setLinks(nextLinks);
   }
@@ -48,13 +48,13 @@ function MyPage() {
             <div className={styles.Name}>{user.name}</div>
             <div className={styles.Email}>{user.email}</div>
           </div>
-          <Button className={styles.EditButton} as={Link} to="/me/edit">
+          <Button className={styles.EditButton} as={Link} to="/me/info/edit">
             편집
           </Button>
         </Card>
         <p className={styles.Bio}>
           {user.bio ??
-            '아래에 등록한 사이트들과 자신에 대해 간단하게 소개하는 설명을 작성해 주세요!'}
+            "아래에 등록한 사이트들과 자신에 대해 간단하게 소개하는 설명을 작성해 주세요!"}
         </p>
       </header>
       <HorizontalRule className={styles.HorizontalRule} />

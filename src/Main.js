@@ -8,6 +8,7 @@ import {
 } from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import MyPage from "./pages/MyPage";
+import MePage from "./pages/MePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage";
@@ -27,9 +28,10 @@ function Main() {
           </Route>
           <Route element={<MyPageLayout />}>
             <Route path="me" element={<MyPage />} />
+            <Route path="me/info" element={<MePage />} /> {/* 추가 */}
           </Route>
           <Route element={<FullLayout />}>
-            <Route path="me/edit" element={<SettingPage />} />
+            <Route path="me/info/edit" element={<SettingPage />} />
             <Route path="me/links/create" element={<CreateLinkPage />} />
             <Route path="me/links/:linkId/edit" element={<EditLinkPage />} />
             <Route path="login" element={<LoginPage />} />
