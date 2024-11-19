@@ -2,23 +2,35 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./BottomNav.module.css";
 import { useAuth } from "../contexts/AuthProvider";
-import ChatPopup from "./ChatPopup"; // 팝업 컴포넌트 임포트
+import ChatPopup from "./ChatPopup";
+import AlarmPopup from "./AlarmPopup";
 
 function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("/me");
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isChatPopupOpen, setIsChatPopupOpen] = useState(false);
+  const [isAlarmPopupOpen, setIsAlarmPopupOpen] = useState(false);
 
-  const openPopup = () => {
-    setIsPopupOpen(true);
+  const openChatPopup = () => {
+    setIsChatPopupOpen(true);
     setActiveTab("/chat"); // Chat 탭 활성화
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  const closeChatPopup = () => {
+    setIsChatPopupOpen(false);
     setActiveTab("/me"); // 팝업 닫힐 때 기본 탭 활성화
+  };
+
+  const openAlarmPopup = () => {
+    setIsAlarmPopupOpen(true);
+    setActiveTab("/notifications"); // Alarm 탭 활성화
+  };
+
+  const closeAlarmPopup = () => {
+    setIsAlarmPopupOpen(false);
+    setActiveTab("/me");
   };
 
   // 라우팅 상태에 따라 탭 활성화
@@ -30,8 +42,6 @@ function BottomNav() {
       location.pathname === "/me/info/edit"
     ) {
       setActiveTab("/me/info");
-    } else if (location.pathname.startsWith("/notifications")) {
-      setActiveTab("/notifications");
     } else {
       setActiveTab("/me"); // 기본 경로
     }
@@ -73,7 +83,7 @@ function BottomNav() {
           <label
             className={styles.tab}
             htmlFor="radio-2"
-            onClick={openPopup} // Chat 클릭 시 팝업 열기
+            onClick={openChatPopup} // Chat 클릭 시 팝업 열기
           >
             Chat
           </label>
@@ -85,10 +95,12 @@ function BottomNav() {
             checked={activeTab === "/notifications"}
             readOnly
           />
-          <label className={styles.tab} htmlFor="radio-3">
-            <Link to="/notifications" className={styles.navLink}>
-              Alarm
-            </Link>
+          <label
+            className={styles.tab}
+            htmlFor="radio-3"
+            onClick={openAlarmPopup} // Alarm 클릭 시 팝업 열기
+          >
+            Alarm
             <span className={styles.notification}>2</span>
           </label>
 
@@ -109,8 +121,11 @@ function BottomNav() {
           {activeTab && <span className={styles.glider}></span>}
         </div>
       </div>
-      {/* 팝업 렌더링 */}
-      {isPopupOpen && <ChatPopup onClose={closePopup} />}
+      {/* Chat 팝업 렌더링 */}
+      {isChatPopupOpen && <ChatPopup onClose={closeChatPopup} />}
+
+      {/* Alarm 팝업 렌더링 */}
+      {isAlarmPopupOpen && <AlarmPopup onClose={closeAlarmPopup} />}
     </>
   );
 }
