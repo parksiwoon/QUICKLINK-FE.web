@@ -1,12 +1,14 @@
 /* BottomNav.module.css */
 .container {
-  position: fixed; /* 화면에 고정 */
+  position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+  z-index: 1000;
+  width: 100%; /* 화면 너비에 맞추기 */
+  max-width: 500px; /* 최대 너비 제한 */
 }
 
 .tabs {
@@ -17,6 +19,9 @@
     0 6px 12px 0 rgba(24, 94, 224, 0.15);
   padding: 0.75rem;
   border-radius: 99px;
+  max-width: 90%; /* 화면 크기에 따라 너비 조정 */
+  width: 100%; /* 탭 너비를 부모 컨테이너에 맞춤 */
+  justify-content: space-between; /* 탭 간격 균등 분배 */
 }
 
 .tabs * {
@@ -28,18 +33,17 @@ input[type="radio"] {
 }
 
 .tab {
+  flex: 1; /* 탭이 균등하게 분배되도록 설정 */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 50px;
-  font-size: 0.8rem;
+  height: 40px; /* 탭 높이 조정 */
+  font-size: 0.9rem;
   color: black;
   font-weight: 500;
   border-radius: 99px;
   cursor: pointer;
   transition: color 0.15s ease-in;
-  text-decoration: none;
 }
 
 .navLink {
@@ -51,12 +55,12 @@ input[type="radio"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
   position: absolute;
   top: 10px;
-  left: 50%;
-  font-size: 10px;
+  left: 67%;
+  font-size: 15px;
   border-radius: 50%;
   background-color: #e6eef9;
   transition: 0.15s ease-in;
@@ -76,30 +80,55 @@ input[id="radio-1"]:checked ~ .glider {
 }
 
 input[id="radio-2"]:checked ~ .glider {
-  transform: translateX(100%);
+  transform: translateX(93%);
 }
 
 input[id="radio-3"]:checked ~ .glider {
-  transform: translateX(200%);
+  transform: translateX(190%);
 }
 
 input[id="radio-4"]:checked ~ .glider {
-  transform: translateX(300%);
+  transform: translateX(283%);
 }
 
 .glider {
   position: absolute;
   display: flex;
-  height: 30px;
-  width: 50px;
+  height: 40px; /* 플로팅 선택 표시기의 높이 조정 */
+  width: 25%; /* 각 탭 너비에 맞추어 확장 */
   background-color: #e6eef9;
   z-index: 1;
   border-radius: 99px;
   transition: 0.25s ease-out;
 }
 
+/* 반응형 추가 */
 @media (max-width: 700px) {
   .tabs {
-    transform: scale(0.6);
+    transform: scale(0.8); /* 작은 화면에서 적절한 크기 조정 */
+  }
+
+  .tab {
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .glider {
+    height: 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  .tabs {
+    padding: 0.3rem;
+  }
+
+  .tab {
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  .glider {
+    height: 30px;
   }
 }

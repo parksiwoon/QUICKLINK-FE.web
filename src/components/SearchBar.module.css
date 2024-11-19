@@ -1,16 +1,19 @@
 /* From Uiverse.io by satyamchaudharydev */
 .form {
-  --width-of-input: 200px;
+  --width-of-input: 100%; /* 입력창이 화면 전체를 기준으로 중앙에 정렬되도록 설정 */
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
   --border-after-color: #5891ff;
   --input-hovered-color: #4985e01f;
-  position: relative;
-  width: var(--width-of-input);
+  position: absolute; /* absolute로 위치 고정 */
+  left: 50%; /* 부모의 50% 지점 */
+  transform: translateX(-50%); /* 중앙 정렬 */
+  width: 90%; /* 화면 폭의 90% 차지 */
+  max-width: 440px; /* 최대 너비 설정 */
 }
 /* styling of Input */
 .input {
-  color: #fff;
+  color: #333;
   font-size: 0.9rem;
   background-color: transparent;
   width: 100%;
