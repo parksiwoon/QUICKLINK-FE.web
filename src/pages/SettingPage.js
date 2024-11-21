@@ -12,10 +12,9 @@ import { useAuth } from "../contexts/AuthProvider";
 function SettingPage() {
   const [initialAvatar, setInitialAvatar] = useState("");
   const [values, setValues] = useState({
-    avatar: "",
-    name: "",
-    email: "",
-    bio: "",
+    profile: "", // 프로필 이미지 URL
+    username: "", // 이름
+    description: "", // 소개
   });
   const navigate = useNavigate();
   const { user, updateMe } = useAuth(true);
@@ -35,24 +34,24 @@ function SettingPage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("avatar", values.avatar);
-    formData.append("name", values.name);
-    formData.append("email", values.email);
-    formData.append("bio", values.bio);
+    const updatedData = {
+      profile: values.profile,
+      username: values.username,
+      description: values.description,
+    };
 
-    await updateMe(formData);
+    await updateMe(updatedData);
     navigate("/me/info");
   }
 
   useEffect(() => {
-    const { avatar, name, email, bio } = user;
+    const { profile, username, description } = user;
     setValues({
-      name,
-      email,
-      bio,
+      profile,
+      username,
+      description,
     });
-    setInitialAvatar(avatar);
+    setInitialAvatar(profile);
   }, [user]);
 
   return (
@@ -60,23 +59,24 @@ function SettingPage() {
       <h1 className={styles.Heading}>프로필 편집</h1>
       <form className={styles.Form} onSubmit={handleSubmit}>
         <AvatarInput
-          name="avatar"
+          name="profile"
           initialAvatar={initialAvatar}
           className={styles.Input}
           onChange={handleChange}
         />
-        <Label className={styles.Label} htmlFor="name">
+        <Label className={styles.Label} htmlFor="username">
           이름
         </Label>
         <Input
-          id="name"
+          id="username"
           className={styles.Input}
-          name="name"
+          name="username"
           type="text"
           placeholder="이름"
-          value={values.name}
+          value={values.username}
           onChange={handleInputChange}
         />
+        {/** 
         <Label className={styles.Label} htmlFor="email">
           이메일
         </Label>
@@ -89,17 +89,18 @@ function SettingPage() {
           value={values.email}
           onChange={handleInputChange}
         />
-        <Label className={styles.Label} htmlFor="bio">
+*/}
+        <Label className={styles.Label} htmlFor="description">
           내 링크 소개
         </Label>
         <TextArea
-          id="bio"
+          id="description"
           className={styles.TextArea}
-          name="bio"
+          name="description"
           type="text"
           maxLength={64}
           placeholder="아래에 등록한 사이트들과 자신에 대해 간단하게 소개하는 설명을 작성해 주세요!"
-          value={values.bio}
+          value={values.description}
           onChange={handleInputChange}
         />
         <Button className={styles.Button}>적용하기</Button>
