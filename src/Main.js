@@ -18,6 +18,7 @@ import CreateLinkPage from "./pages/CreateLinkPage";
 import EditLinkPage from "./pages/EditLinkPage";
 import Nav from "./components/Nav"; // Nav 컴포넌트 추가
 import BottomNav from "./components/BottomNav"; // BottomNav 컴포넌트 추가
+import { AuthProvider } from "./contexts/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function Main() {
@@ -25,31 +26,33 @@ function Main() {
 
   return (
     <BrowserRouter>
-      <App>
-        {/* Nav 컴포넌트는 App에 포함하여 모든 페이지에 상단바로 고정 */}
-        <Nav onSearch={setSearchTerm} />
-        <Routes>
-          <Route element={<LandingLayout />}>
-            <Route index element={<HomePage />} />
-          </Route>
-          <Route element={<MyPageLayout />}>
-            {/* 검색어를 MyPage로 전달 */}
-            <Route path="me" element={<MyPage searchTerm={searchTerm} />} />
-            <Route path="me/info" element={<MePage />} />
-          </Route>
-          <Route element={<FullLayout />}>
-            <Route path="me/info/edit" element={<SettingPage />} />
-            <Route path="me/links/create" element={<CreateLinkPage />} />
-            <Route path="me/links/:linkId/edit" element={<EditLinkPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
-          </Route>
-          <Route element={<UserLayout />}>
-            <Route path=":userId" element={<UserPage />} />
-          </Route>
-        </Routes>
-        <BottomNav /> {/* 하단 BottomNav 컴포넌트 추가 */}
-      </App>
+      <AuthProvider>
+        <App>
+          {/* Nav 컴포넌트는 App에 포함하여 모든 페이지에 상단바로 고정 */}
+          <Nav onSearch={setSearchTerm} />
+          <Routes>
+            <Route element={<LandingLayout />}>
+              <Route index element={<HomePage />} />
+            </Route>
+            <Route element={<MyPageLayout />}>
+              {/* 검색어를 MyPage로 전달 */}
+              <Route path="me" element={<MyPage searchTerm={searchTerm} />} />
+              <Route path="me/info" element={<MePage />} />
+            </Route>
+            <Route element={<FullLayout />}>
+              <Route path="me/info/edit" element={<SettingPage />} />
+              <Route path="me/links/create" element={<CreateLinkPage />} />
+              <Route path="me/links/:linkId/edit" element={<EditLinkPage />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegisterPage />} />
+            </Route>
+            <Route element={<UserLayout />}>
+              <Route path=":userId" element={<UserPage />} />
+            </Route>
+          </Routes>
+          <BottomNav /> {/* 하단 BottomNav 컴포넌트 추가 */}
+        </App>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

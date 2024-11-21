@@ -22,6 +22,16 @@ export function PublicNav() {
 function Nav({ onSearch }) {
   const { user, logout } = useAuth();
 
+  const handleLogout = async () => {
+    try {
+      console.log("Logging out...");
+      await logout();
+      console.log("Logout successful");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <>
       <header className={styles.Container}>
@@ -33,10 +43,10 @@ function Nav({ onSearch }) {
           <div className={styles.Menu}>
             {user ? (
               <>
-                {user.name}
+                <span>{user.name}</span>
                 <Avatar src={user.avatar} size="small" />
                 <div className={styles.Divider} />
-                <Button as={Link} appearance="secondary" onClick={logout}>
+                <Button as={Link} appearance="secondary" onClick={handleLogout}>
                   로그아웃
                 </Button>
               </>
