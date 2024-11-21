@@ -13,14 +13,14 @@ import { useAuth } from "../contexts/AuthProvider";
 
 function RegisterPage() {
   const [values, setValues] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     passwordRepeat: "",
   });
   const navigate = useNavigate();
   const toast = useToaster();
-  const { user, login } = useAuth();
+  const { user, login } = useAuth(); // 'user'를 여기서 가져옴
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -38,17 +38,27 @@ function RegisterPage() {
       toast("warn", "비밀번호가 일치하지 않습니다.");
       return;
     }
-    const { name, email, password } = values;
-    await axios.post("/users", {
-      name,
-      email,
-      password,
-    });
-    await login({ email, password });
-    navigate("/me");
+
+    const { username, email, password } = values;
+
+    try {
+      // 회원가입 API 호출
+      await axios.post("/auth/signup", {
+        username,
+        email,
+        password,
+      });
+
+      toast("success", "회원가입이 완료되었습니다.");
+      navigate("/login"); // 회원가입 성공 후 로그인 페이지로 이동
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+      toast("error", "회원가입 중 문제가 발생했습니다.");
+    }
   }
 
   useEffect(() => {
+    // 현재 사용자가 로그인되어 있으면 /me로 리다이렉트
     if (user) {
       navigate("/me");
     }
@@ -63,16 +73,16 @@ function RegisterPage() {
       </Button>
       <HorizontalRule className={styles.HorizontalRule}>또는</HorizontalRule>
       <form className={styles.Form} onSubmit={handleSubmit}>
-        <Label className={styles.Label} htmlFor="name">
+        <Label className={styles.Label} htmlFor="username">
           이름
         </Label>
         <Input
-          id="name"
+          id="username"
           className={styles.Input}
-          name="name"
+          name="username"
           type="text"
           placeholder="김링크"
-          value={values.name}
+          value={values.username}
           onChange={handleChange}
         />
         <Label className={styles.Label} htmlFor="email">
