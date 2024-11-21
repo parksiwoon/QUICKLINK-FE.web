@@ -43,8 +43,8 @@ function Nav({ onSearch }) {
           <div className={styles.Menu}>
             {user ? (
               <>
-                <span>{user.name}</span>
-                <Avatar src={user.avatar} size="small" />
+                <span>{user.username}</span>
+                <Avatar src={user.profile} size="small" />
                 <div className={styles.Divider} />
                 <Button as={Link} appearance="secondary" onClick={handleLogout}>
                   로그아웃
