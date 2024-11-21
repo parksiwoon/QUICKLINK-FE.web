@@ -28,9 +28,9 @@ function MePage() {
       <HorizontalRule className={styles.HorizontalRule} />
       <header className={styles.Header}>
         <Card className={styles.Profile}>
-          <Avatar src={user.avatar} alt="프로필 이미지" />
+          <Avatar src={user.profile} alt="프로필 이미지" />
           <div className={styles.Values}>
-            <div className={styles.Name}>{user.name}</div>
+            <div className={styles.Name}>{user.username}</div>
             <div className={styles.Email}>{user.email}</div>
           </div>
           <Button
@@ -42,7 +42,7 @@ function MePage() {
           </Button>
         </Card>
         <p className={styles.Bio}>
-          {user.bio ??
+          {user.description ??
             "아래에 등록한 사이트들과 자신에 대해 간단하게 소개하는 설명을 작성해 주세요!"}
         </p>
       </header>

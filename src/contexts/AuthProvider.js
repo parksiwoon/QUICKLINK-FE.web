@@ -110,7 +110,14 @@ export function AuthProvider({ children }) {
   // 사용자 정보 업데이트
   async function updateMe(formData) {
     try {
-      const res = await axios.put("/member", formData); // PUT /api/member 사용
+      const token = localStorage.getItem("accessToken"); // 토큰 가져오기
+      if (!token) throw new Error("AccessToken이 없습니다.");
+
+      const res = await axios.put("/member", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Authorization 헤더 추가
+        },
+      }); // PUT /api/member 사용
       const updatedUser = res.data.result;
 
       setValues((prevValues) => ({

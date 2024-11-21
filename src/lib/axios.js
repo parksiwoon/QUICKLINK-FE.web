@@ -10,7 +10,14 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken"); // 저장된 accessToken 가져오기
-    if (token) {
+
+    // 특정 경로(API 요청)에서 Authorization 헤더 제거
+    const excludedEndpoints = ["https://api.imgbb.com/1/upload"]; // Authorization 헤더를 제외할 URL 목록
+    const isExcluded = excludedEndpoints.some((endpoint) =>
+      config.url.includes(endpoint)
+    );
+
+    if (token && !isExcluded) {
       config.headers.Authorization = `Bearer ${token}`; // Bearer 인증 헤더 추가
     }
     return config;

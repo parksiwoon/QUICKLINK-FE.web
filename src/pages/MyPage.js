@@ -15,14 +15,18 @@ function MyPage({ searchTerm }) {
 
   // 링크 데이터를 가져오는 함수
   async function getMyLinks() {
-    const res = await axios.get("/users/me/links");
-    setLinks(res.data);
+    try {
+      const res = await axios.get("/link");
+      setLinks(res.data.result);
+    } catch (error) {
+      console.error("링크 데이터를 가져오는데 실패했습니다.", error);
+    }
   }
 
   // 링크 편집 후 반영
   async function updateLink(linkId, updatedData) {
     try {
-      await axios.put(`/users/me/links/${linkId}`, updatedData);
+      await axios.put(`/link/$${linkId}`, updatedData);
       getMyLinks(); // 링크 업데이트 후 목록 재동기화
     } catch (error) {
       console.error("링크 수정 중 오류 발생", error);
@@ -32,7 +36,7 @@ function MyPage({ searchTerm }) {
   // 링크 삭제
   function handleDeleteClick(linkId) {
     axios
-      .delete(`/users/me/links/${linkId}`)
+      .delete(`/link/${linkId}`)
       .then(() => {
         setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
       })
@@ -47,7 +51,7 @@ function MyPage({ searchTerm }) {
 
   const filteredLinks = links.filter(
     (link) =>
-      link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      link.siteName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       link.url.toLowerCase().includes(searchTerm.toLowerCase()) // URL도 필터링 조건에 추가
   );
 
@@ -59,12 +63,12 @@ function MyPage({ searchTerm }) {
         {filteredLinks.map((link) => (
           <li className={styles.LinkItem} key={link.id}>
             <LinkCard
-              title={link.title}
+              title={link.siteName}
               url={link.url}
               thumbUrl={link.thumbUrl}
               onClick={() => navigate(`/me/links/${link.id}/edit`)}
               onDelete={() => {
-                axios.delete(`/users/me/links/${link.id}`);
+                axios.delete(`/link/${link.id}`);
                 setLinks((prevLinks) =>
                   prevLinks.filter((prevLink) => prevLink.id !== link.id)
                 );
