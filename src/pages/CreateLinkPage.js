@@ -9,7 +9,7 @@ import { useAuth } from "../contexts/AuthProvider";
 
 function CreateLinkPage() {
   const [values, setValues] = useState({
-    title: "",
+    siteName: "",
     url: "",
   });
   const navigate = useNavigate();
@@ -26,8 +26,8 @@ function CreateLinkPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { title, url } = values;
-    await axios.post("/users/me/links", { title, url });
+    const { siteName, url } = values;
+    await axios.post("/link", { siteName, url });
     navigate("/me");
   }
 
@@ -35,16 +35,16 @@ function CreateLinkPage() {
     <>
       <h1 className={styles.Heading}>링크 추가</h1>
       <form className={styles.Form} onSubmit={handleSubmit}>
-        <Label className={styles.Label} htmlFor="title">
+        <Label className={styles.Label} htmlFor="siteName">
           사이트 이름
         </Label>
         <Input
-          id="title"
+          id="siteName"
           className={styles.Input}
-          name="title"
+          name="siteName"
           type="text"
           placeholder="사이트 이름"
-          value={values.title}
+          value={values.siteName}
           onChange={handleChange}
         />
         <Label className={styles.Label} htmlFor="url">
