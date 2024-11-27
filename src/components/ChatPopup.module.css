@@ -78,3 +78,25 @@
 .sendButton:hover {
   background: #0056b3;
 }
+
+.recommendation {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.recommendation a {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.recommendation a:hover {
+  text-decoration: underline;
+}
+
+.recommendation p {
+  color: #555;
+  margin-top: 4px;
+  font-size: 12px;
+}
