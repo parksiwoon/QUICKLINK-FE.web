@@ -1,56 +1,61 @@
+.notificationList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .card {
-  width: 100%;
-  max-width: 290px;
-  height: 70px;
-  background: #353535;
-  border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  margin-bottom: 10px; /* 카드 간 간격 조정 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 12px;
+  background: #f9f9f9; /* 밝고 통일된 배경 */
+  border: 1px solid #e0e0e0; /* 약간의 테두리 */
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: scale(1.03); /* 호버 시 카드 확대 */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 증가 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Hover 효과 */
 }
 
 .img {
-  width: 50px;
-  height: 50px;
-  margin-left: 10px;
-  border-radius: 10px;
-  background: linear-gradient(#d7cfcf, #9198e5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #74b9ff, #a29bfe); /* 그라데이션 */
 }
 
 .textBox {
-  width: calc(100% - 90px);
-  margin-left: 10px;
-  color: white;
-  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .textContent {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-.span {
-  font-size: 10px;
-  color: #bbb; /* 날짜 텍스트 색상 조정 */
+  align-items: center;
 }
 
 .h1 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
+  color: #333;
+}
+
+.span {
+  font-size: 12px;
+  color: #999;
 }
 
 .p {
   font-size: 12px;
-  font-weight: lighter;
-  color: #aaa; /* URL 색상 약간 밝게 조정 */
+  color: #555;
+  text-decoration: underline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
