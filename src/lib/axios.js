@@ -6,9 +6,16 @@ const instance = axios.create({
   baseURL: `${BASE_URL}`, // http://<IP주소>/api
 });
 
+// 기본 URL 디버깅
+console.log("Configured Axios Base URL:", instance.defaults.baseURL);
+console.log("Environment Variable BASE_URL:", process.env.REACT_APP_BASE_URL);
+
 // 요청 인터셉터: Authorization 헤더에 Bearer 토큰 추가
 instance.interceptors.request.use(
   (config) => {
+    // 요청 URL 디버깅
+    console.log("Request Full URL:", config.url);
+    console.log("Request Base URL:", config.baseURL);
     const token = localStorage.getItem("accessToken"); // 저장된 accessToken 가져오기
 
     // 특정 경로(API 요청)에서 Authorization 헤더 제거
@@ -22,13 +29,17 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error("Request Error:", error); // 요청 에러 디버깅
+    return Promise.reject(error);
+  }
 );
 
 // 응답 인터셉터: 토큰 만료 시 갱신 처리
 instance.interceptors.response.use(
   (response) => response,
   async (error) => {
+    console.error("Response Error:", error.response); // 응답 에러 디버깅
     const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
