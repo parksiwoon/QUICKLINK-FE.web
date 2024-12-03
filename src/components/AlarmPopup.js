@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./Popup.module.css"; // 팝업 공통 스타일
-import AlarmPopupCard from "./AlarmPopupCard"; // 카드 컴포넌트 임포트
+import commonStyles from "./Popup.module.css"; // 공통 스타일
+import styles from "./AlarmPopupCard.module.css"; // 알람 카드 스타일
+import AlarmPopupCard from "./AlarmPopupCard";
 
 function AlarmPopup({ notifications, onClose }) {
   return (
-    <div className={styles.overlay}>
-      <div className={styles.popup}>
-        <button className={styles.closeButton} onClick={onClose}>
+    <div className={commonStyles.overlay}>
+      <div className={commonStyles.popup}>
+        <button className={commonStyles.closeButton} onClick={onClose}>
           ✕
         </button>
         <div className={styles.notificationList}>
