@@ -1,3 +1,8 @@
+/* Popup.module.css */
+.popup {
+  font-family: inherit; /* 전역 스타일 상속 */
+}
+
 .overlay {
   position: fixed;
   top: 0;

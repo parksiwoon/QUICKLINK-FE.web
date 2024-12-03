@@ -14,8 +14,6 @@ console.log("Environment Variable BASE_URL:", process.env.REACT_APP_BASE_URL);
 instance.interceptors.request.use(
   (config) => {
     // 요청 URL 디버깅
-    console.log("Request Full URL:", config.url);
-    console.log("Request Base URL:", config.baseURL);
     const token = localStorage.getItem("accessToken"); // 저장된 accessToken 가져오기
 
     // 특정 경로(API 요청)에서 Authorization 헤더 제거
@@ -30,7 +28,6 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error("Request Error:", error); // 요청 에러 디버깅
     return Promise.reject(error);
   }
 );
