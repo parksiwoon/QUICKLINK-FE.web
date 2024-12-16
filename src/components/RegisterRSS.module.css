@@ -1,0 +1,133 @@
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: inherit; /* 전체 웹페이지에서 사용하는 글씨체 적용 */
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 600;
+}
+
+input {
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff; /* 기존 파란색 색상 사용 */
+}
+
+.infoText {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.infoText a {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.infoText a:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.rssListTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.rssList {
+  list-style: none;
+  padding: 0;
+}
+
+.rssListItem {
+  background-color: #f5f5f5;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.deleteButton {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.3s;
+}
+
+.deleteButton:hover {
+  background-color: #d9363e;
+}

@@ -20,6 +20,7 @@ import Nav from "./components/Nav"; // Nav 컴포넌트 추가
 import BottomNav from "./components/BottomNav"; // BottomNav 컴포넌트 추가
 import { AuthProvider } from "./contexts/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RegisterRSS from "./components/RegisterRSS";
 
 function Main() {
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
